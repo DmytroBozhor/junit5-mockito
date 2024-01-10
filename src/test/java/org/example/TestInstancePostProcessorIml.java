@@ -10,10 +10,10 @@ public class TestInstancePostProcessorIml implements TestInstancePostProcessor {
     public void postProcessTestInstance(Object testInstance, ExtensionContext context) throws Exception {
         var declaredFields = testInstance.getClass().getDeclaredFields();
         Arrays.stream(declaredFields).forEach(field -> {
-            if (field.isAnnotationPresent(MyInjection.class)) {
+            if (field.isAnnotationPresent(UserServiceInjection.class)) {
                 field.setAccessible(true);
                 try {
-                    field.set(testInstance, "Injection completed");
+                    field.set(testInstance, new UserService());
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }

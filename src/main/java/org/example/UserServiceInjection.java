@@ -9,5 +9,5 @@ import static java.lang.annotation.ElementType.*;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(FIELD)
-public @interface MyInjection {
+public @interface UserServiceInjection {
 }

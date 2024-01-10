@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith({
         TestInstancePostProcessorIml.class
@@ -12,14 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Application tests")
 class AppTest {
 
-    @MyInjection
-    private String value;
+    @UserServiceInjection
+    private UserService userService;
 
     @Test
     @DisplayName("injecting field value with post processor")
     void testValueInjection() {
-        System.out.println(value);
-        assertEquals("Injection completed", value);
+        assertThat(userService).isEqualTo(new UserService());
     }
 
 }
